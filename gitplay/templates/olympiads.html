@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Olympiads 2022-2023</h1>
+{% for name in olympiads %}
+<h3>{{ forloop.counter }}. {{name}}</h3>
+{% endfor %}
+
+{%endblock%}

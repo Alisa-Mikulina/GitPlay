@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Upwego team members</h1>
+{% for member in team %}
+<h3>{{ forloop.counter }}. {{ member }}</h3>
+{% endfor %}
+
+{%endblock%}
