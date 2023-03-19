@@ -10,3 +10,12 @@ def list_team(request):
     }
 
     return render(request, 'team.html', context=context)
+
+
+def team_member(request, name:str):
+
+    context = {
+        'name': name
+    }
+
+    return render(request, 'team_member.html', context=context)
