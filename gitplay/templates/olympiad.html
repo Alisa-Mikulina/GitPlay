@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Olympiad page {{ id }}</h1>
+{% if id > olympiads|length or 1 > id %}
+<h1>There is no olympiad with such number</h1>
+
+{% else %}
+<h1> {{ olympiad }} </h1>
+<h1> {{ id }} </h1>
+
+{% endif %}
 
 {%endblock%}
