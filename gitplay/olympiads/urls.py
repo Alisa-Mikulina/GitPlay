@@ -4,5 +4,5 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.main, name='GitPlay'),
+    path('', views.list_olympiads, name='olympiads'),
 ]
