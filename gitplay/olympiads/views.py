@@ -9,3 +9,13 @@ def list_olympiads(request):
     }
 
     return render(request, 'olympiads.html', context=context)
+
+
+def show_olympiad(request, id: int):
+
+    context = {
+        'id': id
+    }
+
+    return render(request, 'olympiad.html', context=context)
+

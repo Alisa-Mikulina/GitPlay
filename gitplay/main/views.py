@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from core import constants
 
 
 def main(request):
