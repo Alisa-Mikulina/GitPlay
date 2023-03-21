@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from core import constants
 from olympiads.models import Olympiad
 
 
@@ -16,10 +15,12 @@ def list_olympiads(request):
 
 def show_olympiad(request, id: int):
 
-    if id > len(constants.OLYMPIADS) or id < 1:
+    all_olympiads = Olympiad.objects.all()
+
+    if id > len(all_olympiads) or id < 1:
         context = {
             'id': id,
-            'olympiads': constants.OLYMPIADS
+            'olympiads': all_olympiads
         }
     else:
 
