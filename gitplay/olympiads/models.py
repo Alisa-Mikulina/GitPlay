@@ -1,3 +1,12 @@
 from django.db import models
+from core import constants
 
-# Create your models here.
+class Olympiad(models.Model):
+    name = models.CharField(max_length=256)
+    level = models.CharField(max_length=3, choices=constants.OLYMPIAD_LEVELS, default='VOS')
+
+    def __str__(self) -> str:
+        return self.name
+    
+    class Meta:
+        ordering = ['id']

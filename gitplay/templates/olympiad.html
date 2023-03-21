@@ -4,8 +4,11 @@
 {% if id > olympiads|length or 1 > id %}
 <h1>There is no olympiad with such number</h1>
 
+{% elif id == 1 %}
+<h1> {{ name }} </h1>
+
 {% else %}
-<h1> {{ olympiad }} </h1>
+<h1> {{ name }} - уровень {{ lvl }} </h1>
 
 {% endif %}
 
