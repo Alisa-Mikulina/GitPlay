@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% if id > olympiads|length or 1 > id %}
+{% if not id %}
 <h1>There is no olympiad with such number</h1>
 
 {% elif id == 1 %}
