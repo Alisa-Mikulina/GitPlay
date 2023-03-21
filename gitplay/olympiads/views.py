@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from olympiads.models import Olympiad
-
+from django.core.exceptions import ObjectDoesNotExist
 
 def list_olympiads(request):
 
@@ -15,22 +15,15 @@ def list_olympiads(request):
 
 def show_olympiad(request, id: int):
 
-    all_olympiads = Olympiad.objects.all()
-
-    if id > len(all_olympiads) or id < 1:
-        
-        return render(request, 'olympiad.html')
-
-    else:
-
-        olympiad = Olympiad.objects.filter(id=id)
-        olympiad_vals = olympiad.values_list()
+    try:
+        olympiad = Olympiad.objects.get(id=id)
 
         context = {
             'id': id,
-            'name': olympiad_vals[0][1],
-            'lvl': olympiad_vals[0][2],
+            'olympiad': olympiad
         }
+    except ObjectDoesNotExist:
+        context = None
 
     return render(request, 'olympiad.html', context=context)
 
