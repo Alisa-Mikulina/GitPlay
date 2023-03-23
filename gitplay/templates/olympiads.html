@@ -2,9 +2,9 @@
 {% block content %}
 
 <h1>Olympiads 2022-2023</h1>
-{% for name in olympiads %}
+{% for olympiad in olympiads %}
 <h2>
-<a href="/olympiads/{{forloop.counter}}">{{ forloop.counter }}. {{name}}</a>
+<a href="/olympiads/{{ olympiad.slug }}">{{ forloop.counter }}. {{ olympiad.name }}</a>
 </h2>
 {% endfor %}
 

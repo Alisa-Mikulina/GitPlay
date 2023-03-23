@@ -13,13 +13,12 @@ def list_olympiads(request):
     return render(request, 'olympiads.html', context=context)
 
 
-def show_olympiad(request, id: int):
+def show_olympiad(request, slug):
 
     try:
-        olympiad = Olympiad.objects.get(id=id)
+        olympiad = Olympiad.objects.get(slug=slug)
 
         context = {
-            'id': id,
             'olympiad': olympiad
         }
     except ObjectDoesNotExist:
