@@ -12,4 +12,11 @@
 
 {% endif %}
 
+{% for exercise in exercises %}
+<h2>
+<a href="/olympiads/exercises/{{ exercise.slug }}">{{ exercise.type }} {{ exercise.code }} ({{ exercise.period.start_year }}-{{ exercise.period.end_year }})</a>
+</h2>
+{% endfor %}
+
+
 {%endblock%}

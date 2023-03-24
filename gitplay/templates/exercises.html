@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1><span style="color: #33cccc;">Olympiads 2022-2023</h1>
+{% for exercise in exercises %}
+<h2>
+<a href="/olympiads/exercises/{{ exercise.slug }}">{{ forloop.counter }}. {{ exercise.type }} {{ exercise.code }}</a>
+</h2>
+{% endfor %}
+
+{%endblock%}

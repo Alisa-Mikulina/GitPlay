@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>{{ exercise.olympiad.name }} ({{ exercise.period.start_year }}-{{ exercise.period.end_year }})</h1>
+<p></p>
+<h2>{{ exercise.task_description | linebreaks }}</h2>
+<p></p>
+<p>{{ exercise.contents | linebreaks }}</p>
+
+{%endblock%}
