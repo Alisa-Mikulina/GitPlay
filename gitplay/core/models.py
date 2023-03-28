@@ -14,7 +14,8 @@ def max_year(value):
 class Year(models.Model):
     year = models.PositiveBigIntegerField(
         default=current_year(),
-        validators=[MinValueValidator(2000), max_year]
+        validators=[MinValueValidator(2000), max_year],
+        unique=True
     )
 
     def __str__(self) -> str:

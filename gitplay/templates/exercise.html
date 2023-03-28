@@ -2,6 +2,13 @@
 {% block content %}
 
 <h1>{{ exercise.olympiad.name }} ({{ exercise.period.start_year }}-{{ exercise.period.end_year }})</h1>
+
+{% for tag in exercise.tags.all %}
+<ul>
+<li><em>{{ tag }}</em></li>
+</ul>
+{% endfor %}
+
 <p></p>
 <h2>{{ exercise.task_description | linebreaks }}</h2>
 <p></p>

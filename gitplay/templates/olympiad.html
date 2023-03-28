@@ -4,15 +4,15 @@
 {% if not olympiad %}
 <h1>There is no olympiad with such number</h1>
 
-{% elif olympiad.level == '0' %}
+{% elif olympiad.level_id == 0 %}
 <h1> {{ olympiad.name }} </h1>
 
 {% else %}
-<h1> {{ olympiad.name }} - уровень {{ olympiad.level }} </h1>
+<h1> {{ olympiad.name }} - {{ olympiad.level }} </h1>
 
 {% endif %}
 
-{% for exercise in exercises %}
+{% for exercise in olympiad.olympic_exercises.all %}
 <h2>
 <a href="/olympiads/exercises/{{ exercise.slug }}">{{ exercise.type }} {{ exercise.code }} ({{ exercise.period.start_year }}-{{ exercise.period.end_year }})</a>
 </h2>
