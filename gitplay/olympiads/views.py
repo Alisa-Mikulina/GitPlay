@@ -1,8 +1,12 @@
 from django.shortcuts import render
-from olympiads.models import Olympiad, OlympiadExercise
+from olympiads.models import Olympiad, OlympiadExercise, Level
+from olympiads.forms import ExerciseTypeForm
 from django.core.exceptions import ObjectDoesNotExist
 from core.models import Period, Year
 import datetime
+from django.http import HttpResponseRedirect
+
+
 
 
 def define_current_period():
@@ -28,9 +32,11 @@ def list_olympiads(request):
     current_period = define_current_period()
 
     all_olympiads = Olympiad.objects.filter(period=current_period)
+    levels = Level.objects.all()
 
     context = {
-        'olympiads': all_olympiads
+        'olympiads': all_olympiads,
+        'levels': levels
     }
 
     return render(request, 'olympiads.html', context=context)
@@ -77,3 +83,33 @@ def show_exercise(request, slug):
         }
     
     return render(request, 'exercise.html', context=context)
+
+
+
+def create_exercise_type(request):
+
+    if request.method == 'POST':
+
+        form =ExerciseTypeForm(request.POST)
+
+        if form.is_valid():
+
+            form.save()
+
+            form = ExerciseTypeForm()
+
+            context = {
+                    'form': form
+                }
+
+            return render(request, 'create_exercise_type.html', context=context)
+        return render(request, 'create_exercise_type.html', context=context)
+
+    else: 
+        form = ExerciseTypeForm()
+
+        context = {
+            'form': form
+            }
+
+        return render(request, 'create_exercise_type.html', context=context)

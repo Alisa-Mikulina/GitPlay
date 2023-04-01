@@ -2,9 +2,11 @@
 {% block content %}
 
 <h1><span style="color: #33cccc;">Olympiads 2022-2023</h1>
+<p></p>
+
 {% for olympiad in olympiads %}
 <h2>
-<a href="/olympiads/{{ olympiad.slug }}">{{ forloop.counter }}. {{ olympiad.name }}</a>
+<a href="/olympiads/{{ olympiad.slug }}">{{ olympiad.name }}</a>
 </h2>
 {% endfor %}
 

@@ -27,14 +27,14 @@ class Tag(models.Model):
 class Olympiad(models.Model):
     name = models.CharField(max_length=256)
     level = models.ForeignKey(Level, on_delete=models.PROTECT, related_name='olympiads')
-    slug = models.SlugField(default='vos')
+    slug = models.SlugField()
     period = models.ForeignKey(Period, on_delete=models.PROTECT, related_name='olympiads')
 
     def __str__(self) -> str:
         return f'{self.name} {str(self.period)}'
     
     class Meta:
-        ordering = ['period', 'id']
+        ordering = ['-period', 'id']
 
     
 
