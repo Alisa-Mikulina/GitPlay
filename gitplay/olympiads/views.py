@@ -4,7 +4,6 @@ from olympiads.forms import ExerciseTypeForm
 from django.core.exceptions import ObjectDoesNotExist
 from core.models import Period, Year
 import datetime
-from django.http import HttpResponseRedirect
 
 
 
@@ -13,7 +12,7 @@ def define_current_period():
     current_month = datetime.date.today().month
     current_year = datetime.date.today().year
 
-    if current_month > 9:
+    if current_month > 8:
         start_year = Year.objects.get(year=current_year)
         end_year = Year.objects.get(year=current_year + 1)
     else:
@@ -23,7 +22,6 @@ def define_current_period():
     current_period = Period.objects.get(start_year=start_year, end_year=end_year)
 
     return current_period
-
 
 
 
@@ -40,7 +38,6 @@ def list_olympiads(request):
     }
 
     return render(request, 'olympiads.html', context=context)
-
 
 
 
@@ -62,7 +59,6 @@ def show_olympiad(request, slug):
 
 
 
-
 def list_exercises(request):
     
     all_exercises = OlympiadExercise.objects.all()
@@ -72,7 +68,6 @@ def list_exercises(request):
     }
 
     return render(request, 'exercises.html', context=context)
-
 
 
 
