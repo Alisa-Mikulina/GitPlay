@@ -1,14 +1,17 @@
-from django.shortcuts import render
-from olympiads.models import Olympiad, OlympiadExercise, Level
-from olympiads.forms import ExerciseTypeForm
-from django.core.exceptions import ObjectDoesNotExist
-from core.models import Period, Year
 import datetime
 
+from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import render
 
+from olympiads.models import Olympiad, OlympiadExercise, Level
+from olympiads.forms import ExerciseTypeForm
+from core.models import Period, Year
 
 
 def define_current_period():
+    """
+    Defines the current school year.
+    """
     current_month = datetime.date.today().month
     current_year = datetime.date.today().year
 
@@ -18,7 +21,7 @@ def define_current_period():
     else:
         start_year = Year.objects.get(year=current_year - 1)
         end_year = Year.objects.get(year=current_year)
-    
+
     current_period = Period.objects.get(start_year=start_year, end_year=end_year)
 
     return current_period
@@ -60,7 +63,7 @@ def show_olympiad(request, slug):
 
 
 def list_exercises(request):
-    
+
     all_exercises = OlympiadExercise.objects.all()
 
     context = {
@@ -72,11 +75,11 @@ def list_exercises(request):
 
 
 def show_exercise(request, slug):
-    
+
     context = {
         'exercise': OlympiadExercise.objects.get(slug=slug)
         }
-    
+
     return render(request, 'exercise.html', context=context)
 
 
@@ -100,7 +103,7 @@ def create_exercise_type(request):
             return render(request, 'create_exercise_type.html', context=context)
         return render(request, 'create_exercise_type.html', context=context)
 
-    else: 
+    else:
         form = ExerciseTypeForm()
 
         context = {
