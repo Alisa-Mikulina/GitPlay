@@ -3,9 +3,11 @@ import datetime
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 
+from core.models import Period, Year
 from olympiads.models import Olympiad, OlympiadExercise, Level
 from olympiads.forms import ExerciseTypeForm
-from core.models import Period, Year
+
+
 
 
 def define_current_period():
@@ -29,6 +31,9 @@ def define_current_period():
 
 
 def list_olympiads(request):
+    '''
+    Shows all the olympiads of current period
+    '''
 
     current_period = define_current_period()
 
@@ -45,6 +50,9 @@ def list_olympiads(request):
 
 
 def show_olympiad(request, slug):
+    '''
+    Shows the olympiad page and exercises related to it
+    '''
 
     current_period = define_current_period()
 
@@ -63,7 +71,10 @@ def show_olympiad(request, slug):
 
 
 def list_exercises(request):
-
+    '''
+    Shows all the olympic exercises
+    '''
+    
     all_exercises = OlympiadExercise.objects.all()
 
     context = {
@@ -75,16 +86,22 @@ def list_exercises(request):
 
 
 def show_exercise(request, slug):
-
+    '''
+    Shows one exercise
+    '''
+    
     context = {
         'exercise': OlympiadExercise.objects.get(slug=slug)
         }
-
+    
     return render(request, 'exercise.html', context=context)
 
 
 
 def create_exercise_type(request):
+    '''
+    Allows creating exercise types via /create/exercise-type/
+    '''
 
     if request.method == 'POST':
 
